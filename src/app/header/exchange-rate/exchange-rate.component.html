@@ -6,12 +6,14 @@
     interval: ms;
     controller as ctrl
   "
+  (mouseenter)="prev.show(); next.show()"
+  (mouseleave)="prev.hide(); next.hide()"
 >
-  <button mat-button (click)="ctrl.prev()">
+  <button mat-button (click)="ctrl.prev()" appHidden #prev="hiddenControl">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
   <span>{{ rate.value | currency: rate.currency:"symbol-narrow" }}</span>
-  <button mat-button (click)="ctrl.next()">
+  <button mat-button (click)="ctrl.next()" appHidden #next="hiddenControl">
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>
 </div>

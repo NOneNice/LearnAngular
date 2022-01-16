@@ -10,9 +10,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
 import { ExchangeRateComponent } from './header/exchange-rate/exchange-rate.component';
 import { ExchangeRateDirective } from './header/exchange-rate/exchange-rate.directive';
+import { HiddenDirective } from './header/exchange-rate/hidden.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SideMenuComponent, ProductCardComponent, ProductsFilterPipe, ExchangeRateComponent, ExchangeRateDirective],
+  declarations: [AppComponent, HeaderComponent, SideMenuComponent, ProductCardComponent, ProductsFilterPipe, ExchangeRateComponent, ExchangeRateDirective, HiddenDirective],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
