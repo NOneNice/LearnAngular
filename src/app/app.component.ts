@@ -1,25 +1,31 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { IProduct, products$ } from './data';
-import { UnSubscribe } from './utils/Unsubscribe';
+import { Observable } from 'rxjs';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent extends UnSubscribe implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   public title = 'Ng Course';
   public MyDrawer!: MatDrawer;
-  public product!: IProduct[];
+  public products$: Observable<IProduct[]> = products$;
+  public searchText = '';
+  public onlyFavorites = false;
 
   setSideNav(drawer: MatDrawer) {
     this.MyDrawer = drawer;
   }
-  ngOnInit() {
-    const sub1 = products$.subscribe((p) => {
-      this.product = p;
-    });
-    this.sub.push(sub1);
+  ngOnInit() {}
+
+  public search(text: string) {
+    this.searchText = text;
+  }
+
+  public toggleOnlyFavorites(event: MatCheckboxChange) {
+    this.onlyFavorites = event.checked;
   }
 }

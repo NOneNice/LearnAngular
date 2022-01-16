@@ -1,6 +1,4 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
   Component,
   ContentChild,
   EventEmitter,
@@ -17,33 +15,23 @@ import { MatDrawer } from '@angular/material/sidenav';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.css'],
 })
-export class SideMenuComponent
-  implements OnInit, AfterViewInit, AfterContentInit
-{
+export class SideMenuComponent implements OnInit {
   @Output()
   public setSideNavControl: EventEmitter<MatDrawer> = new EventEmitter<MatDrawer>(
     true
   );
 
-  @ViewChild('drawer')
+  @ViewChild('drawer', { static: true })
   public sideMenu!: MatDrawer;
 
-  @ViewChild('ContentBlock', { read: ViewContainerRef })
-  public block!: ViewContainerRef;
+  @ViewChild('ContentBlock', { read: ViewContainerRef, static: true })
+  public block: ViewContainerRef;
 
-  @ContentChild('ContentTemplate')
-  public contentEl!: TemplateRef<any>;
+  @ContentChild('ContentTemplate', { static: true })
+  public contentEl: TemplateRef<any>;
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.block.createEmbeddedView(this.contentEl);
     this.setSideNavControl.emit(this.sideMenu);
-  }
-
-  ngAfterContentInit(): void {
-    console.log(this.contentEl);
   }
 }
